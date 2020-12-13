@@ -17,7 +17,6 @@ export default function SignUp() {
   // ========
 
   const openModel = () => {
-    console.log("openModel func");
     setIsOpen(true);
   };
   const closeModel = () => {
@@ -25,7 +24,6 @@ export default function SignUp() {
   };
   const onSignUpSubmit = (event) => {
     event.preventDefault();
-    console.log("i clicked submit");
   };
   return (
     <>

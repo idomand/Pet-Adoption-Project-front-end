@@ -2,6 +2,7 @@ import React, { useState, useContext } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import ReactModal from "react-modal";
 import mainContext from "../lip/context";
+import { useHistory } from "react-router-dom";
 
 // ========
 
@@ -10,11 +11,11 @@ export default function Login() {
   const [password, setPassword] = useState("");
   const [isOpen, setIsOpen] = useState(false);
   const myMockData = useContext(mainContext);
+  const historyFunc = useHistory();
 
   // ========
 
   const openModel = () => {
-    console.log("openModel func");
     setIsOpen(true);
   };
   const closeModel = () => {
@@ -22,10 +23,9 @@ export default function Login() {
   };
   const onLoginSubmit = (event) => {
     event.preventDefault();
-    console.log("i clicked submit");
     myMockData.logInFunc(email, password);
     setIsOpen(false);
-    console.log("myMockData :>> ", myMockData);
+    historyFunc.push("./HomePageOpen");
   };
 
   // ========

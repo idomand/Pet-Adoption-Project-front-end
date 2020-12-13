@@ -5,7 +5,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import mainContext from "../lip/context";
 import { useHistory, Link } from "react-router-dom";
 import PetsPage from "./PetsPage";
-
+import NavBar from "./NavBar";
 // ========
 
 export default function ProfileSettings() {
@@ -21,11 +21,10 @@ export default function ProfileSettings() {
   // ========
 
   const handleHomePage = () => {
-    historyFunc.push("/");
+    historyFunc.push("/HomePageOpen");
   };
   const onSignUpSubmit = (event) => {
     event.preventDefault();
-    console.log("i clicked submit");
   };
 
   // ========
@@ -112,7 +111,9 @@ export default function ProfileSettings() {
               Submit
             </Button>
           </Form>
-          <Button onClick={handleHomePage}>Back to Home Page </Button>
+          <NavBar currentPage="ProfileSettings" />
+
+          {/* <Button onClick={handleHomePage}>Back to Home Page </Button> */}
         </Card.Body>
       </Card>
     </>

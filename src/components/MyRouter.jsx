@@ -1,25 +1,27 @@
-import React from "react";
-import HomePage from "./HomePage";
+import React, { useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { MainProvider } from "../lip/context";
 import SearchPage from "./SearchPage";
 import ProfileSettings from "./ProfileSettings";
-// import PetsPag from "./PetsPag";
 import PetsPage from "./PetsPage";
+import HomePageClosed from "./HomePageClosed";
+import HomePageOpen from "./HomePageOpen";
 // ========
 
 export default function MyRouter() {
+  const [flag, setFlag] = useState(false);
   const myMockData = {
-    flag: true,
+    flag: flag,
     userName: "ido",
     userEmail: "bob@gmail.com",
     logInFunc: (email, password) => {
-      console.log("this is the log in func");
       myMockData.userEmail = email;
       myMockData.password = password;
-      myMockData.flag = true;
+      setFlag(true);
     },
-    signInFunc: "ass",
+    logOutFunc: () => {
+      setFlag(false);
+    },
   };
 
   // ========
@@ -37,9 +39,11 @@ export default function MyRouter() {
             <Route path="/ProfileSettings">
               <ProfileSettings />
             </Route>
+            <Route path="/HomePageOpen">
+              <HomePageOpen />
+            </Route>
             <Route exact path="/">
-              {" "}
-              <HomePage />
+              <HomePageClosed />
             </Route>
           </Switch>
         </MainProvider>

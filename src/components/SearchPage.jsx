@@ -1,20 +1,20 @@
 import React, { useState, useContext } from "react";
-import Login from "./Login";
-import ProfileSettings from "./ProfileSettings";
-import SignUp from "./SignUp";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import mainContext from "../lip/context";
 import { useHistory } from "react-router-dom";
+import NavBar from "./NavBar";
 
 export default function SearchPage() {
   const userData = useContext(mainContext);
-  console.log("userData :>> ", userData);
   const historyFunc = useHistory();
 
-  const [currentUser, setCurrentUser] = useState("");
-
+  const [currentUser, setCurrentUser] = useState(userData);
   const handleHomeButton = () => {
-    historyFunc.push("/");
+    if (currentUser.flag) {
+      historyFunc.push("/HomePageOpen");
+    } else {
+      historyFunc.push("/");
+    }
   };
 
   return (
@@ -25,12 +25,19 @@ export default function SearchPage() {
             <h1>welcome {userData.userName}</h1>
           </Card.Title>
           <Card.Subtitle className="mb-2 text-muted">
-            this is my app
+            search pageeeeeeee
+            {currentUser.flag ? (
+              <h1>this is from log in</h1>
+            ) : (
+              <h1>this is from log out</h1>
+            )}
           </Card.Subtitle>
           <div className="mt-3 border">
-            <Login />
-            <SignUp />
-            <Button onClick={handleHomeButton}>HomePage</Button>
+            {currentUser.flag ? (
+              <NavBar currentPage="SearchPage" />
+            ) : (
+              <Button onClick={handleHomeButton}>HomePage</Button>
+            )}
           </div>
         </Card.Body>
       </Card>
