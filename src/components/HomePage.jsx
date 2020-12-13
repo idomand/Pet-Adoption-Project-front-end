@@ -1,21 +1,18 @@
-import React, { useState, useContext } from "react";
-import Login from "./Login";
-import ProfileSettings from "./ProfileSettings";
-import SignUp from "./SignUp";
+import React, { useState, useContext, useEffect } from "react";
+// import Login from "./Login";
+// import ProfileSettings from "./ProfileSettings";
+// import SignUp from "./SignUp";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import mainContext from "../lip/contex";
-import { useHistory } from "react-router-dom";
+import mainContext from "../lip/context";
+// import { useHistory, Link } from "react-router-dom";
+// import PetsPage from "./PetsPage";
+import NavBar from "./NavBar";
+
+// ========
 
 export default function HomePage() {
-  const userData = useContext(mainContext);
-  console.log("userData :>> ", userData);
-  const historyFunc = useHistory();
-
-  const [currentUser, setCurrentUser] = useState("");
-
-  const handleSearchButton = () => {
-    historyFunc.push("/searchPage");
-  };
+  const myMockData = useContext(mainContext);
+  const [currentUser, setCurrentUser] = useState(myMockData);
 
   return (
     <>
@@ -23,15 +20,13 @@ export default function HomePage() {
         <Card.Body className="d-flex flex-column justify-content-between p-5 border">
           <Card.Title>
             <div>
-              <h1>welcome {userData.userName}</h1>
+              <h1>
+                welcome {currentUser.flag ? currentUser.userEmail : "stranger"}
+              </h1>
               <p> this is my app</p>
             </div>
           </Card.Title>
-          <div className=" d-flex justify-content-around border ">
-            <Login />
-            <SignUp />
-            <Button onClick={handleSearchButton}>Search Page</Button>
-          </div>
+          <NavBar currentPage='homepage' />
         </Card.Body>
       </Card>
     </>

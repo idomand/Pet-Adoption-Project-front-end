@@ -3,7 +3,7 @@ import Login from "./Login";
 import ProfileSettings from "./ProfileSettings";
 import SignUp from "./SignUp";
 import { Form, Button, Card, Alert } from "react-bootstrap";
-import mainContext from "../lip/contex";
+import mainContext from "../lip/context";
 import { useHistory } from "react-router-dom";
 
 export default function SearchPage() {

@@ -1,14 +1,21 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import ReactModal from "react-modal";
+import mainContext from "../lip/context";
+
+// ========
 
 export default function SignUp() {
-  const [firstName, setFirstName] = useState("");
-  const [LestName, setLestName] = useState("");
+  const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
+  const [phoneNumber, setPhoneNumber] = useState("");
+  const myMockData = useContext(mainContext);
   const [isOpen, setIsOpen] = useState(false);
+
+  // ========
+
   const openModel = () => {
     console.log("openModel func");
     setIsOpen(true);
@@ -30,34 +37,33 @@ export default function SignUp() {
             <strong>Sign Up</strong>
           </Card.Title>
           <Card.Body>
-            {/* {error && <Alert variant="danger">{error}</Alert>} */}
             <Form
               onSubmit={(event) => {
                 onSignUpSubmit(event);
               }}
             >
-              <Form.Group controlId="formFirstName">
-                <Form.Label>First Name</Form.Label>
+              <Form.Group controlId="formName">
+                <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="text"
-                  placeholder="Enter First Name"
-                  value={firstName}
+                  placeholder="Enter First and Lest Name"
+                  value={name}
                   required
                   onChange={(event) => {
-                    setFirstName(event.target.value);
+                    setName(event.target.value);
                   }}
                 />
                 <Form.Text className="text-muted"></Form.Text>
               </Form.Group>
-              <Form.Group controlId="formLestName">
-                <Form.Label>Lest Name</Form.Label>
+              <Form.Group controlId="phoneNumber">
+                <Form.Label>Phone Number</Form.Label>
                 <Form.Control
-                  type="text"
-                  placeholder="Enter Lest Name"
-                  value={LestName}
+                  type="tel"
+                  placeholder="Enter phoneNumber"
+                  value={phoneNumber}
                   required
                   onChange={(event) => {
-                    setLestName(event.target.value);
+                    setPhoneNumber(event.target.value);
                   }}
                 />
                 <Form.Text className="text-muted"></Form.Text>
