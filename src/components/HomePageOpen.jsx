@@ -17,10 +17,8 @@ export default function HomePageOpen() {
         <Card.Body className="d-flex flex-column justify-content-between p-5">
           <Card.Title>
             <div className="d-flex flex-column justify-content-between">
-              <h1 className="card-text">home page open</h1>
-              <h1 className="card-text">
-                welcome {currentUser.flag ? currentUser.userEmail : "stranger"}
-              </h1>
+              {/* <h1 className="card-text">home page open</h1> */}
+              <h1 className="card-text">welcome {currentUser.userName}</h1>
               <p className="card-text">
                 {" "}
                 Ready to add a new love to your family? There are so many

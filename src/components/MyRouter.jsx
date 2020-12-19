@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import { MainProvider } from "../lip/context";
 import SearchPage from "./SearchPage";
 import ProfileSettings from "./ProfileSettings";
-import PetsPage from "./PetsPage";
+import MyPetsPage from "./MyPetsPage";
 import HomePageClosed from "./HomePageClosed";
 import HomePageOpen from "./HomePageOpen";
 // ========
 
 export default function MyRouter() {
   const [flag, setFlag] = useState(false);
+
   const myMockData = {
     flag: flag,
     userName: "ido",
@@ -33,8 +34,8 @@ export default function MyRouter() {
             <Route path="/searchPage">
               <SearchPage />
             </Route>
-            <Route path="/PetsPage">
-              <PetsPage />
+            <Route path="/MyPetsPage">
+              <MyPetsPage />
             </Route>
             <Route path="/ProfileSettings">
               <ProfileSettings />

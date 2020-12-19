@@ -3,7 +3,7 @@ import ProfileSettings from "./ProfileSettings";
 import { Button } from "react-bootstrap";
 import mainContext from "../lip/context";
 import { useHistory, Link } from "react-router-dom";
-import PetsPage from "./PetsPage";
+import MyPetsPage from "./MyPetsPage";
 
 // ========
 
@@ -15,11 +15,12 @@ export default function NavBar(props) {
   // ========
   const logOutFunc = () => {
     currentUser.logOutFunc();
+    console.log(currentUser.flag);
     // setCurrentUser({ flag: false });
     historyFunc.push("/");
   };
-  const handlePetsPageButton = () => {
-    historyFunc.push("/PetsPage");
+  const handleMyPetsPageButton = () => {
+    historyFunc.push("/MyPetsPage");
   };
   const handleProfileSettingsButton = () => {
     historyFunc.push("/ProfileSettings");
@@ -33,9 +34,9 @@ export default function NavBar(props) {
 
   return (
     <>
-      <div className=" d-flex justify-content-between border m-5">
+      <div className=" d-flex justify-content-between m-5">
         <Button onClick={handleProfileSettingsButton}>User Settings</Button>
-        <Button onClick={handlePetsPageButton}>Pets Page</Button>
+        <Button onClick={handleMyPetsPageButton}>My Pets Page</Button>
         <Button onClick={handleSearchButton}>Search Page</Button>
         <Button variant="danger" onClick={logOutFunc}>
           Log Out

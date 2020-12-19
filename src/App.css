@@ -8,7 +8,21 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* background-color: lightblue; */
+  background-image: linear-gradient(
+    to right top,
+    #d16ba5,
+    #c777b9,
+    #ba83ca,
+    #aa8fd8,
+    #9a9ae1,
+    #8aa7ec,
+    #79b3f4,
+    #69bff8,
+    #52cffe,
+    #41dfff,
+    #46eefa,
+    #5ffbf1
+  );
 }
 
 code {
@@ -19,14 +33,14 @@ code {
 .home-page-card {
   border-radius: 20px;
   display: flex;
-  max-width: 75%;
+  max-width: 78%;
   max-height: 90%;
   margin: auto;
   justify-content: center;
-  background-color: lightgray;
+  /* background-color: lightgray; */
   height: 95vh;
   margin-top: 10px;
-  background-image: url("./pictures/background.jpg");
+  /* background-image: url("./pictures/background.jpg"); */
 }
 
 .my-form {
