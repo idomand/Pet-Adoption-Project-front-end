@@ -1,15 +1,11 @@
-import React, { useState, useContext, useEffect } from "react";
-import Login from "./Login";
-import SignUp from "./SignUp";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import React, { useState, useContext } from "react";
+import { Form, Button, Card } from "react-bootstrap";
 import mainContext from "../lip/context";
-import { useHistory, Link } from "react-router-dom";
 import NavBar from "./NavBar";
 // ========
 
 export default function ProfileSettings() {
   const myMockData = useContext(mainContext);
-  const historyFunc = useHistory();
   const [currentUser, setCurrentUser] = useState(myMockData);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -19,9 +15,6 @@ export default function ProfileSettings() {
 
   // ========
 
-  const handleHomePage = () => {
-    historyFunc.push("/HomePageOpen");
-  };
   const onSignUpSubmit = (event) => {
     event.preventDefault();
   };
@@ -112,7 +105,6 @@ export default function ProfileSettings() {
           </Form>
           <NavBar currentPage="ProfileSettings" />
 
-          {/* <Button onClick={handleHomePage}>Back to Home Page </Button> */}
         </Card.Body>
       </Card>
     </>

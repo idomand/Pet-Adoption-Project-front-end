@@ -1,5 +1,27 @@
-.pet-name {
-  border: blue 2px solid;
+.pet-card-item {
+  background-color: lightgrey;
+  opacity: 80%;
+  border: 0.5px black solid;
+  border-radius: 15px;
+  margin-left: 5px;
+  padding: 5px;
 }
-.pet-picture {
+
+.collapsible > button {
+  border: none;
+  background-color: lightgreen;
+}
+
+.collapsible {
+}
+
+.extra-info {
+  background-color: lightgray;
+  opacity: 75%;
+  border-radius: 5px;
+}
+.extra-info > p {
+  margin: 5px 0;
+  color: black;
+  text-align: left;
 }

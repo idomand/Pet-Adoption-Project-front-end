@@ -1,6 +1,8 @@
-body {
-}
-
 .patItem {
   background-color: aqua;
+}
+
+.pet-card-div {
+  display: flex;
+  flex-grow: 1;
 }

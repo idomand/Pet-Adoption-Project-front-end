@@ -8,9 +8,6 @@ import BasicSearchBar from "./BasicSearchBar";
 //====================
 
 export default function AdvancedSearchBar() {
-  //   return <div>AdvancedSearchBar</div>;
-  // }
-
   //====================
 
   const userData = useContext(mainContext);

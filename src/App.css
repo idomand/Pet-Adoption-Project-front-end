@@ -40,7 +40,7 @@ code {
   /* background-color: lightgray; */
   height: 95vh;
   margin-top: 10px;
-  /* background-image: url("./pictures/background.jpg"); */
+  background-image: url("./pictures/background.jpg");
 }
 
 .my-form {

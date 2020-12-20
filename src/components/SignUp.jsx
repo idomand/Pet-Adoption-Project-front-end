@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Card, Alert } from "react-bootstrap";
+import { Form, Button, Card } from "react-bootstrap";
 import ReactModal from "react-modal";
 import mainContext from "../lip/context";
 

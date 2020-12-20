@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { MainProvider } from "../lip/context";
 import SearchPage from "./SearchPage";
 import ProfileSettings from "./ProfileSettings";

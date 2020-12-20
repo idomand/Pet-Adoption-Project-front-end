@@ -1,15 +1,13 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Card, Dropdown } from "react-bootstrap";
+import { Form, Dropdown } from "react-bootstrap";
 import mainContext from "../lip/context";
 import { useHistory } from "react-router-dom";
-import NavBar from "./NavBar";
 import BasicSearchBar from "./BasicSearchBar";
 import AdvancedSearchBar from "./AdvancedSearchBar";
 //====================
 
 export default function SearchBar() {
   const userData = useContext(mainContext);
-  const historyFunc = useHistory();
   const [currentUser, setCurrentUser] = useState(userData);
   const [searchOption, setSearchOption] = useState("BasicSearchBar");
   const [typeOfAnimal, setTypeOfAnimal] = useState("");

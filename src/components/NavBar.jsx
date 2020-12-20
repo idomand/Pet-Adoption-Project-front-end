@@ -1,9 +1,7 @@
 import React, { useState, useContext } from "react";
-import ProfileSettings from "./ProfileSettings";
 import { Button } from "react-bootstrap";
 import mainContext from "../lip/context";
 import { useHistory, Link } from "react-router-dom";
-import MyPetsPage from "./MyPetsPage";
 
 // ========
 
@@ -15,8 +13,6 @@ export default function NavBar(props) {
   // ========
   const logOutFunc = () => {
     currentUser.logOutFunc();
-    console.log(currentUser.flag);
-    // setCurrentUser({ flag: false });
     historyFunc.push("/");
   };
   const handleMyPetsPageButton = () => {

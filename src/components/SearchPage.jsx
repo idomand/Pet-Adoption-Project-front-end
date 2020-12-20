@@ -19,9 +19,6 @@ export default function SearchPage() {
 
   //====================
 
-  console.log("typeOfAnimal :>> ", typeOfAnimal);
-  console.log("searchOption :>> ", searchOption);
-
   const handleHomeButton = () => {
     if (currentUser.flag) {
       historyFunc.push("/HomePageOpen");

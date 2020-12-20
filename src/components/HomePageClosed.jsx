@@ -27,7 +27,6 @@ export default function HomePageClosed() {
         <Card.Body className="d-flex flex-column justify-content-between p-5">
           <Card.Title>
             <div className="d-flex flex-column justify-content-between">
-              {/* <h1 className="card-text">HomePage Closed</h1> */}
               <h1 className="card-text">
                 welcome <strong>stranger</strong>
               </h1>
@@ -50,5 +49,3 @@ export default function HomePageClosed() {
     </>
   );
 }
-
-// ========
