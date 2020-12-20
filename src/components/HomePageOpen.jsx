@@ -13,7 +13,7 @@ export default function HomePageOpen() {
   return (
     <>
       <Card className="home-page-card">
-        <Card.Body className="d-flex flex-column justify-content-between p-5">
+        <Card.Body className="d-flex flex-column justify-content-between p-2">
           <Card.Title>
             <div className="d-flex flex-column justify-content-between">
               <h1 className="card-text">welcome {currentUser.userName}</h1>

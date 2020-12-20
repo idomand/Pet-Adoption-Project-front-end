@@ -5,6 +5,7 @@
   border-radius: 15px;
   margin-left: 5px;
   padding: 5px;
+  max-width: 250px;
 }
 
 .collapsible > button {
@@ -24,4 +25,17 @@
   margin: 5px 0;
   color: black;
   text-align: left;
+}
+
+.pet-image-small {
+  width: 80%;
+  max-width: 100px;
+  margin: 10px 0;
+  border-radius: 50px;
+}
+.pet-image-big {
+  width: 80%;
+  max-width: 300px;
+  margin: 10px 0;
+  border-radius: 20px;
 }

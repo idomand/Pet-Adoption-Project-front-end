@@ -2,8 +2,6 @@ import React, { useState, useContext } from "react";
 import { Form, Dropdown } from "react-bootstrap";
 import mainContext from "../lip/context";
 import { useHistory } from "react-router-dom";
-import NavBar from "./NavBar";
-import BasicSearchBar from "./BasicSearchBar";
 
 //====================
 
@@ -11,7 +9,6 @@ export default function AdvancedSearchBar() {
   //====================
 
   const userData = useContext(mainContext);
-  const historyFunc = useHistory();
   const [currentUser, setCurrentUser] = useState(userData);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchOption, setSearchOption] = useState("");
