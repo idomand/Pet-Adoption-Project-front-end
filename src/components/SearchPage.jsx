@@ -4,6 +4,7 @@ import mainContext from "../lip/context";
 import { useHistory } from "react-router-dom";
 import NavBar from "./NavBar";
 import SearchBar from "./SearchBar";
+import SearchResults from "./SearchResults";
 
 //====================
 
@@ -27,8 +28,6 @@ export default function SearchPage() {
     }
   };
 
-
-
   //====================
 
   return (
@@ -47,6 +46,8 @@ export default function SearchPage() {
             )}
           </Card.Subtitle>
           <SearchBar />
+          <SearchResults />
+
           <div className="mt-3">
             {currentUser.flag ? (
               <NavBar currentPage="SearchPage" />

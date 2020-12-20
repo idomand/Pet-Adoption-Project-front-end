@@ -22,60 +22,7 @@ export default function MyPetsPage() {
 
   // ========
 
-  const mockPetDetailsArray = [
-    {
-      type: "dog",
-      breed: "mixed",
-      name: "dingo",
-      adoptionStatus: "dead",
-      picture: "./publicPictures/dingo1.jpg",
-      height: 80,
-      weight: 15,
-      color: "brown",
-      bio: "he was a really good dog",
-      hypoallergenic: "no",
-      dietaryRestrictions: "none",
-    },
-    {
-      type: "dog",
-      breed: "mixed",
-      name: "dingo",
-      adoptionStatus: "dead",
-      picture: "./publicPictures/dingo1.jpg",
-      height: 80,
-      weight: 15,
-      color: "brown",
-      bio: "he was a really good dog",
-      hypoallergenic: "no",
-      dietaryRestrictions: "none",
-    },
-    {
-      type: "cat",
-      breed: "mixed",
-      name: "skipi",
-      adoptionStatus: "adopted",
-      picture: "./publicPictures/skipi1.jpg",
-      height: 20,
-      weight: 4,
-      color: "mix",
-      bio: "she is a great cat",
-      hypoallergenic: "no",
-      dietaryRestrictions: "none",
-    },
-    {
-      type: "cat",
-      breed: "mixed",
-      name: "loi",
-      adoptionStatus: "dead",
-      picture: "./publicPictures/loi1.jpg",
-      height: 20,
-      weight: 5,
-      color: "black and white",
-      bio: "kind of shitty, but he was okay",
-      hypoallergenic: "no",
-      dietaryRestrictions: "none",
-    },
-  ];
+  const mockPetDetailsArray = currentUser.petsDetails;
 
   return (
     <>

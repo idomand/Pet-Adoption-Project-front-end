@@ -104,7 +104,6 @@ export default function ProfileSettings() {
             </Button>
           </Form>
           <NavBar currentPage="ProfileSettings" />
-
         </Card.Body>
       </Card>
     </>

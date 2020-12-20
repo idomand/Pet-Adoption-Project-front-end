@@ -26,14 +26,52 @@ export default function NavBar(props) {
     historyFunc.push("/searchPage");
   };
 
+  const handleAdminPageButton = () => {
+    historyFunc.push("/adminPage");
+  };
+
   // ========
+
+  const nevBarButton = (target) => {
+    historyFunc.push(target);
+  };
 
   return (
     <>
       <div className=" d-flex justify-content-between m-5">
-        <Button onClick={handleProfileSettingsButton}>User Settings</Button>
-        <Button onClick={handleMyPetsPageButton}>My Pets Page</Button>
-        <Button onClick={handleSearchButton}>Search Page</Button>
+        {currentUser.isAdmin ? (
+          <Button
+            variant="success"
+            onClick={() => {
+              nevBarButton("/AdminPage");
+            }}
+          >
+            Admin Page
+          </Button>
+        ) : (
+          ""
+        )}
+        <Button
+          onClick={() => {
+            nevBarButton("/ProfileSettings");
+          }}
+        >
+          User Settings
+        </Button>
+        <Button
+          onClick={() => {
+            nevBarButton("/MyPetsPage");
+          }}
+        >
+          My Pets Page
+        </Button>
+        <Button
+          onClick={() => {
+            nevBarButton("/SearchPage");
+          }}
+        >
+          Search Page
+        </Button>
         <Button variant="danger" onClick={logOutFunc}>
           Log Out
         </Button>

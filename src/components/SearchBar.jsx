@@ -9,9 +9,10 @@ import AdvancedSearchBar from "./AdvancedSearchBar";
 export default function SearchBar() {
   const userData = useContext(mainContext);
   const [currentUser, setCurrentUser] = useState(userData);
-  const [searchOption, setSearchOption] = useState("BasicSearchBar");
+  const [searchOption, setSearchOption] = useState("BasicSearch");
   const [typeOfAnimal, setTypeOfAnimal] = useState("");
 
+  console.log("searchOption :>> ", searchOption);
   //====================
   const onSearchSubmit = (event) => {
     event.preventDefault();
@@ -44,14 +45,6 @@ export default function SearchBar() {
 
       {searchOption === "BasicSearch" ? <BasicSearchBar /> : ""}
       {searchOption === "AdvancedSearch" ? <AdvancedSearchBar /> : ""}
-
-      <Form
-        onSubmit={(event) => {
-          onSearchSubmit(event);
-        }}
-      >
-        <input type="submit" />
-      </Form>
     </div>
   );
 }

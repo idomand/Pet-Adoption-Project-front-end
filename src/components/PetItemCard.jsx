@@ -28,13 +28,20 @@ export default function PetItemCard(props) {
   const closeModel = () => {
     setIsOpen(false);
   };
+  const handleReturnToCenter = () => {};
+
+  const handleSavePet = () => {};
+  const handleFoster = () => {};
+  const handleAdopt = () => {
+    console.log(props.animalDetails);
+  };
 
   return (
     <span className="pet-card-item">
       <h4 className="pet-name">Name: {name}</h4>
       <p>Adoption Status: {adoptionStatus}</p>
       <img className="pet-image-small" src={picture} alt={name} />
-      <Button onClick={openModel}>See all info</Button>
+      <Button onClick={openModel}>info and actions</Button>
 
       <ReactModal ariaHideApp={false} isOpen={isOpen}>
         <Button onClick={closeModel}>close</Button>
@@ -92,6 +99,13 @@ export default function PetItemCard(props) {
               </div>
               <img className="pet-image-big" src={picture} alt={name} />
             </div>
+            <Button onClick={handleReturnToCenter}>
+              return to adoption center
+            </Button>
+            <Button onClick={handleAdopt}>adopt!</Button>
+            <Button onClick={handleFoster}>foster!</Button>
+
+            <Button onClick={handleSavePet}>save pet</Button>
           </Card.Body>
         </Card>
       </ReactModal>

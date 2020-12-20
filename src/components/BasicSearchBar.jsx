@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, Dropdown } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import mainContext from "../lip/context";
 //====================
 
@@ -10,32 +10,36 @@ export default function BasicSearchBar() {
   const [typeOfAnimal, setTypeOfAnimal] = useState("");
   //====================
 
+  const onSubmit = (event) => {
+    event.preventDefault();
+    console.log("typeOfAnimal :>> ", typeOfAnimal);
+  };
+
   return (
     <div>
-      <Form.Group controlId="searchBar">
-        <Form.Label>search</Form.Label>
+      <Form.Group
+        onSubmit={(event) => {
+          onSubmit(event);
+        }}
+        controlId="searchBar"
+      >
+        {/* <Form.Label>search</Form.Label> */}
         <div className="d-flex">
-          <Dropdown>
-            <Dropdown.Toggle variant="success" id="dropdown-basic">
-              Type of Animal
-            </Dropdown.Toggle>
-            <Dropdown.Menu>
-              <Dropdown.Item
-                onClick={() => {
-                  setTypeOfAnimal("dogs");
-                }}
-              >
-                Dogs
-              </Dropdown.Item>
-              <Dropdown.Item
-                onClick={() => {
-                  setTypeOfAnimal("cats");
-                }}
-              >
-                cats
-              </Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>
+          <Form
+            onClick={(event) => {
+              setTypeOfAnimal(event.target.value);
+            }}
+          >
+            <Form.Group controlId="exampleForm.SelectCustom">
+              <Form.Label>Type of Animal</Form.Label>
+              <Form.Control as="select" custom>
+                <option> </option>
+                <option>dog</option>
+                <option>cat</option>
+              </Form.Control>
+            </Form.Group>
+          </Form>
+
           <Form.Control
             type="text"
             placeholder="search"
@@ -47,6 +51,9 @@ export default function BasicSearchBar() {
           />
           <Form.Text className="text-muted"></Form.Text>
         </div>
+        <Button variant="primary" type="submit">
+          Submit
+        </Button>
       </Form.Group>
     </div>
   );
