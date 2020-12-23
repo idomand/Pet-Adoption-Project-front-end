@@ -7,9 +7,18 @@ import MyPetsPage from "./MyPetsPage";
 import HomePageClosed from "./HomePageClosed";
 import HomePageOpen from "./HomePageOpen";
 import AdminPage from "./AdminPage";
+import { testFunc } from "../lip/test";
+
 // ========
 
 export default function MyRouter() {
+  const myFunc = async () => {
+    const data = await testFunc();
+
+    console.log(data.data.db[1].pet1);
+  };
+  myFunc();
+
   const [flag, setFlag] = useState(false);
 
   const myMockData = {
