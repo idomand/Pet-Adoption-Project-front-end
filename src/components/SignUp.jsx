@@ -1,8 +1,9 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button, Card, Alert } from "react-bootstrap";
 import ReactModal from "react-modal";
 import mainContext from "../lip/context";
-
+import { signUpNewUser } from "../lip/api";
+import { validateFields } from "../lip/validate";
 // ========
 
 export default function SignUp() {
@@ -13,7 +14,7 @@ export default function SignUp() {
   const [phoneNumber, setPhoneNumber] = useState("");
   const myMockData = useContext(mainContext);
   const [isOpen, setIsOpen] = useState(false);
-
+  const [validationError, setValidationError] = useState("");
   // ========
 
   const openModel = () => {
@@ -22,8 +23,31 @@ export default function SignUp() {
   const closeModel = () => {
     setIsOpen(false);
   };
-  const onSignUpSubmit = (event) => {
+  const onSignUpSubmit = async (event) => {
     event.preventDefault();
+    const newUser = {
+      name,
+      email,
+      phoneNumber,
+      password,
+    };
+    let validationStatus = validateFields(newUser, passwordConfirmation);
+    setValidationError(validationStatus);
+    if (validationStatus) {
+      return;
+    }
+    const userSignIN = await signUpNewUser(newUser);
+    console.log(userSignIN);
+    if (userSignIN === "Email already in use") {
+      setValidationError("Email already in use, pick new Email or Log in");
+    } else {
+      setIsOpen(false);
+      setName("");
+      setEmail("");
+      setPassword("");
+      setPasswordConfirmation("");
+      setPhoneNumber("");
+    }
   };
   return (
     <>
@@ -31,10 +55,15 @@ export default function SignUp() {
       <ReactModal ariaHideApp={false} isOpen={isOpen}>
         <Button onClick={closeModel}> close</Button>
         <Card className="my-form">
-          <Card.Title>
+          <Card.Title className="mx-auto">
             <strong>Sign Up</strong>
           </Card.Title>
           <Card.Body>
+            {validationError ? (
+              <Alert variant={"danger"}>{validationError}</Alert>
+            ) : (
+              ""
+            )}
             <Form
               onSubmit={(event) => {
                 onSignUpSubmit(event);

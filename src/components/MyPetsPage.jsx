@@ -22,7 +22,7 @@ export default function MyPetsPage() {
 
   // ========
 
-  const mockPetDetailsArray = currentUser.petsDetails;
+  // const mockPetDetailsArray = currentUser.petsDetails;
 
   return (
     <>
@@ -35,13 +35,13 @@ export default function MyPetsPage() {
             </div>
           </Card.Title>
           {/* <h1>pats cards</h1> */}
-          <div className="pet-card-div">
+          {/* <div className="pet-card-div">
             {mockPetDetailsArray.map((element) => {
               return (
                 <PetItemCard key={Math.random()} animalDetails={element} />
               );
             })}
-          </div>
+          </div> */}
 
           <NavBar currentPage="MyPetsPage" />
         </Card.Body>

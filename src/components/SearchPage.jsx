@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Form, Button, Card, Dropdown } from "react-bootstrap";
 import mainContext from "../lip/context";
 import { useHistory } from "react-router-dom";
@@ -10,10 +10,10 @@ import SearchResults from "./SearchResults";
 
 export default function SearchPage() {
   //====================
-
-  const userData = useContext(mainContext);
+  console.log("this is searchPageRendering");
+  const contextData = useContext(mainContext);
   const historyFunc = useHistory();
-  const [currentUser, setCurrentUser] = useState(userData);
+  const [currentUser, setCurrentUser] = useState(contextData);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchOption, setSearchOption] = useState("");
   const [typeOfAnimal, setTypeOfAnimal] = useState("");
@@ -35,19 +35,24 @@ export default function SearchPage() {
       <Card className="home-page-card">
         <Card.Body className="d-flex flex-column justify-content-between p-5">
           <Card.Title>
-            <h1>welcome {userData.userName}</h1>
-          </Card.Title>
-          <Card.Subtitle className="mb-2 text-muted">
-            search page
-            {currentUser.flag ? (
-              <h1>this is from log in</h1>
+            {contextData.flag ? (
+              <h1>
+                welcome{" "}
+                <u>
+                  <strong>{contextData.userName}</strong>
+                </u>
+              </h1>
             ) : (
-              <h1>this is from log out</h1>
+              <h1>
+                welcome{" "}
+                <u>
+                  <strong>stranger</strong>
+                </u>
+              </h1>
             )}
-          </Card.Subtitle>
+          </Card.Title>
           <SearchBar />
           <SearchResults />
-
           <div className="mt-3">
             {currentUser.flag ? (
               <NavBar currentPage="SearchPage" />

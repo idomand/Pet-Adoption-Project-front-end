@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Card } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import mainContext from "../lip/context";
 
 // ================
@@ -9,7 +9,7 @@ export default function AdminAddPet() {
   const [currentUser, setCurrentUser] = useState(myMockData);
   const [petName, setPetName] = useState("");
   const [typeOfAnimal, setTypeOfAnimal] = useState("");
-  const [petPicture, setPetPicture] = useState(""); // remember: +++ add the function to upload a picture
+  // const [petPicture, setPetPicture] = useState(""); // remember: +++ add the function to upload a picture
   const [adoptionStatus, setAdoptionStatus] = useState("");
   const [breed, setBreed] = useState("");
   const [petHeight, setPetHeight] = useState("");

@@ -3,6 +3,7 @@ import { Form, Button, Card, Alert } from "react-bootstrap";
 import ReactModal from "react-modal";
 import mainContext from "../lip/context";
 import { useHistory } from "react-router-dom";
+import { loginUser } from "../lip/api";
 
 // ========
 
@@ -10,7 +11,8 @@ export default function Login() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [isOpen, setIsOpen] = useState(false);
-  const myMockData = useContext(mainContext);
+  const [errorMessage, setErrorMessage] = useState("");
+  const contextData = useContext(mainContext);
   const historyFunc = useHistory();
 
   // ========
@@ -21,11 +23,24 @@ export default function Login() {
   const closeModel = () => {
     setIsOpen(false);
   };
-  const onLoginSubmit = (event) => {
+  const onLoginSubmit = async (event) => {
+    let loginObject = { email, password };
     event.preventDefault();
-    myMockData.logInFunc(email, password);
-    setIsOpen(false);
-    historyFunc.push("./HomePageOpen");
+    const userLogin = await loginUser(loginObject);
+    console.log("=====");
+    console.log("userLogin", userLogin);
+    console.log("=====");
+
+    if (userLogin === "unknown Email") {
+      setErrorMessage("unknown Email");
+    } else if (userLogin === "incorrect password") {
+      setErrorMessage("incorrect password");
+    } else if (userLogin.commend === "password is correct") {
+      console.log("i am in");
+      contextData.logInFunc(userLogin);
+      setIsOpen(false);
+      historyFunc.push("./HomePageOpen");
+    }
   };
 
   // ========
@@ -37,6 +52,7 @@ export default function Login() {
         <Button onClick={closeModel}> close</Button>
         <Card className="my-form">
           <h2>Log In</h2>
+          {errorMessage ? <Alert variant={"danger"}>{errorMessage}</Alert> : ""}
           <Card.Body>
             <Form
               onSubmit={(event) => {

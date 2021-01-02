@@ -25,7 +25,6 @@ body {
     #46eefa,
     #5ffbf1
   );
-  background-color: blue;
 }
 
 code {
@@ -36,14 +35,16 @@ code {
 .home-page-card {
   border-radius: 20px;
   display: flex;
-  max-width: 90%;
-  max-height: 90%;
+  max-width: 1200px;
+  max-height: 800px;
   margin: auto;
+  margin-top: 20px;
   justify-content: center;
   /* background-color: lightgray; */
   height: 95vh;
   /* margin-top: 10px; */
   background-image: url("./pictures/background.jpg");
+  background-repeat: round;
 }
 
 .my-form {

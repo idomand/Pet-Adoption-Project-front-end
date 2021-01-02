@@ -6,8 +6,8 @@ import { Card } from "react-bootstrap";
 // ========
 
 export default function HomePageOpen() {
-  const myMockData = useContext(mainContext);
-  const [currentUser, setCurrentUser] = useState(myMockData);
+  const contextData = useContext(mainContext);
+  console.log("contextData :>> ", contextData);
   // ========
 
   return (
@@ -16,7 +16,7 @@ export default function HomePageOpen() {
         <Card.Body className="d-flex flex-column justify-content-between p-2">
           <Card.Title>
             <div className="d-flex flex-column justify-content-between">
-              <h1 className="card-text">welcome {currentUser.userName}</h1>
+              <h1 className="card-text">welcome {contextData.userName}</h1>
               <p className="card-text">
                 {" "}
                 Ready to add a new love to your family? There are so many

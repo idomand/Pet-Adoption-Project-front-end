@@ -7,121 +7,34 @@ import MyPetsPage from "./MyPetsPage";
 import HomePageClosed from "./HomePageClosed";
 import HomePageOpen from "./HomePageOpen";
 import AdminPage from "./AdminPage";
-import { testFunc } from "../lip/test";
 
 // ========
 
 export default function MyRouter() {
-  const myFunc = async () => {
-    const data = await testFunc();
+  // const [isLogIn, setIsLogIn] = useState(false);
+  const contextData = {
+    isAdmin: "",
+    // isLogIn: isLogIn,
+    userEmail: "",
+    userName: "",
+    userPhoneNumber: "",
+    logInFunc: (userObject) => {
+      contextData.userEmail = userObject.email;
+      contextData.userName = userObject.name;
+      contextData.userPhoneNumber = userObject.phoneNumber;
+      contextData.isAdmin = userObject.isAdmin;
 
-    console.log(data.data.db[1].pet1);
-  };
-  myFunc();
-
-  const [flag, setFlag] = useState(false);
-
-  const myMockData = {
-    isAdmin: true,
-    flag: flag,
-    userName: "ido",
-    userEmail: "bob@gmail.com",
-    logInFunc: (email, password) => {
-      myMockData.userEmail = email;
-      myMockData.password = password;
-      setFlag(true);
+      // setIsLogIn(true);
     },
     logOutFunc: () => {
-      setFlag(false);
+      // setIsLogIn(false);
     },
-    addPet: (
-      name,
-      type,
-      adoptionStatus,
-      breed,
-      // picture,
-      height,
-      weight,
-      color,
-      bio,
-      hypoallergenic,
-      dietaryRestrictions
-    ) => {
-      myMockData.petsDetails.push({
-        name,
-        type,
-        adoptionStatus,
-        breed,
-        // picture,
-        height,
-        weight,
-        color,
-        bio,
-        hypoallergenic,
-        dietaryRestrictions,
-      });
-    },
-    petsDetails: [
-      {
-        type: "dog",
-        breed: "mixed",
-        name: "dingo",
-        adoptionStatus: "dead",
-        picture: "./publicPictures/dingo1.jpg",
-        height: 80,
-        weight: 15,
-        color: "brown",
-        bio: "he was a really good dog",
-        hypoallergenic: "no",
-        dietaryRestrictions: "none",
-      },
-      {
-        type: "dog",
-        breed: "mixed",
-        name: "dingo",
-        adoptionStatus: "dead",
-        picture: "./publicPictures/dingo1.jpg",
-        height: 80,
-        weight: 15,
-        color: "brown",
-        bio: "he was a really good dog",
-        hypoallergenic: "no",
-        dietaryRestrictions: "none",
-      },
-      {
-        type: "cat",
-        breed: "mixed",
-        name: "skipi",
-        adoptionStatus: "adopted",
-        picture: "./publicPictures/skipi1.jpg",
-        height: 20,
-        weight: 4,
-        color: "mix",
-        bio: "she is a great cat",
-        hypoallergenic: "no",
-        dietaryRestrictions: "none",
-      },
-      {
-        type: "cat",
-        breed: "mixed",
-        name: "loi",
-        adoptionStatus: "dead",
-        picture: "./publicPictures/loi1.jpg",
-        height: 20,
-        weight: 5,
-        color: "black and white",
-        bio: "kind of shitty, but he was okay",
-        hypoallergenic: "no",
-        dietaryRestrictions: "none",
-      },
-    ],
   };
-
   // ========
   return (
     <>
       <Router>
-        <MainProvider value={myMockData}>
+        <MainProvider value={contextData}>
           <Switch>
             <Route path="/SearchPage">
               <SearchPage />

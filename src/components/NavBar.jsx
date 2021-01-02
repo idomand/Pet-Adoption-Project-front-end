@@ -1,7 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Button } from "react-bootstrap";
 import mainContext from "../lip/context";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 // ========
 
@@ -15,20 +15,20 @@ export default function NavBar(props) {
     currentUser.logOutFunc();
     historyFunc.push("/");
   };
-  const handleMyPetsPageButton = () => {
-    historyFunc.push("/MyPetsPage");
-  };
-  const handleProfileSettingsButton = () => {
-    historyFunc.push("/ProfileSettings");
-  };
+  // const handleMyPetsPageButton = () => {
+  //   historyFunc.push("/MyPetsPage");
+  // };
+  // const handleProfileSettingsButton = () => {
+  //   historyFunc.push("/ProfileSettings");
+  // };
 
-  const handleSearchButton = () => {
-    historyFunc.push("/searchPage");
-  };
+  // const handleSearchButton = () => {
+  //   historyFunc.push("/searchPage");
+  // };
 
-  const handleAdminPageButton = () => {
-    historyFunc.push("/adminPage");
-  };
+  // const handleAdminPageButton = () => {
+  //   historyFunc.push("/adminPage");
+  // };
 
   // ========
 
