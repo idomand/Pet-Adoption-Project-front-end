@@ -24,7 +24,7 @@ export default function ProfileSettings() {
   return (
     <>
       <Card className="home-page-card">
-        <Card.Body className="d-flex flex-column justify-content-between p-5">
+        <Card.Body className="d-flex flex-column justify-content-between">
           <Card.Title>
             <div>
               <h1>Profile Settings</h1>

@@ -1,60 +1,70 @@
 import React, { useState, useContext } from "react";
-import { Form, Button, Alert } from "react-bootstrap";
+import { Form, Button } from "react-bootstrap";
 import mainContext from "../lip/context";
-import { addNewPet } from "../lip/api";
 import ReactModal from "react-modal";
-
+import { editPet } from "../lip/api";
 // ================
 
-export default function AdminAddPet() {
+export default function AdminEditPet(props) {
   const contextData = useContext(mainContext);
-  const [petName, setPetName] = useState("");
-  const [typeOfAnimal, setTypeOfAnimal] = useState("");
+  const [petName, setPetName] = useState(props.animalDetails.petName);
+  const [typeOfAnimal, setTypeOfAnimal] = useState(
+    props.animalDetails.typeOfAnimal
+  );
   // const [petPicture, setPetPicture] = useState(""); // remember: +++ add the function to upload a picture
-  const [adoptionStatus, setAdoptionStatus] = useState("");
-  const [breed, setBreed] = useState("");
-  const [petHeight, setPetHeight] = useState("");
-  const [petWeight, setPetWeight] = useState("");
-  const [petColor, setPetColor] = useState("");
-  const [petBio, setPetBio] = useState("");
-  const [petIsHypoallergenic, setPetIsHypoallergenic] = useState("");
-  const [petIsDietaryRestrictions, setPetIsDietaryRestrictions] = useState("");
-  const [isOpen, setIsOpen] = useState(false);
+  const [adoptionStatus, setAdoptionStatus] = useState(
+    props.animalDetails.adoptionStatus
+  );
+  const [breed, setBreed] = useState(props.animalDetails.breed);
+  const [petHeight, setPetHeight] = useState(props.animalDetails.petHeight);
+  const [petWeight, setPetWeight] = useState(props.animalDetails.petWeight);
+  const [petColor, setPetColor] = useState(props.animalDetails.petColor);
+  const [petBio, setPetBio] = useState(props.animalDetails.petBio);
+  const [petIsHypoallergenic, setPetIsHypoallergenic] = useState(
+    props.animalDetails.petIsHypoallergenic
+  );
+  const [petIsDietaryRestrictions, setPetIsDietaryRestrictions] = useState(
+    props.animalDetails.petIsDietaryRestrictions
+  );
+  const [isEditOpen, setIsEditOpen] = useState(false);
 
   // ================
 
-  const openModel = () => {
-    setIsOpen(true);
+  const openEdit = () => {
+    setIsEditOpen(true);
   };
-  const closeModel = () => {
-    setIsOpen(false);
+  const closeEdit = () => {
+    setIsEditOpen(false);
   };
-  const onAddPet = async (event) => {
+  const onEditPet = async (event) => {
     event.preventDefault();
-    const newPet = {
-      petName,
-      typeOfAnimal,
-      adoptionStatus,
-      breed,
-      petHeight,
-      petColor,
-      petWeight,
-      petBio,
-      petIsHypoallergenic,
-      petIsDietaryRestrictions,
+    const petObjectToEdit = {
+      _id: props.animalDetails._id,
+      newPetObject: {
+        petName,
+        typeOfAnimal,
+        adoptionStatus,
+        breed,
+        petHeight,
+        petColor,
+        petWeight,
+        petBio,
+        petIsHypoallergenic,
+        petIsDietaryRestrictions,
+      },
     };
-    const result = await addNewPet(newPet);
-    setIsOpen(false);
+    const petAfterUpdate = await editPet(petObjectToEdit);
+
+    setIsEditOpen(false);
   };
 
   return (
     <>
-      <Button variant="success" onClick={openModel}>
-        Add New Pet
+      <Button variant="secondary" onClick={openEdit}>
+        Edit Pet
       </Button>
-
-      <ReactModal ariaHideApp={false} isOpen={isOpen}>
-        <Button onClick={closeModel}>cancel</Button>
+      <ReactModal ariaHideApp={false} isOpen={isEditOpen}>
+        <Button onClick={closeEdit}>cancel</Button>
 
         <div className="d-flex">
           <Form>
@@ -80,7 +90,7 @@ export default function AdminAddPet() {
           >
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label>Type of Animal</Form.Label>
-              <Form.Control as="select" custom>
+              <Form.Control as="select" custom defaultValue={typeOfAnimal}>
                 <option> </option>
                 <option>dog</option>
                 <option>cat</option>
@@ -95,7 +105,7 @@ export default function AdminAddPet() {
           >
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label>Adoption Status</Form.Label>
-              <Form.Control as="select" custom>
+              <Form.Control as="select" custom defaultValue={adoptionStatus}>
                 <option> </option>
                 <option>waiting for adaption</option>
                 <option>waiting For Foster Home</option>
@@ -109,7 +119,7 @@ export default function AdminAddPet() {
           >
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label>breed</Form.Label>
-              <Form.Control as="select" custom>
+              <Form.Control as="select" custom defaultValue={breed}>
                 <option> </option>
                 <option>mix</option>
                 <option>pureBreed</option>
@@ -124,7 +134,7 @@ export default function AdminAddPet() {
           >
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label>Pet color</Form.Label>
-              <Form.Control as="select" custom>
+              <Form.Control as="select" custom defaultValue={petColor}>
                 <option> </option>
                 <option>Black</option>
                 <option>Brown</option>
@@ -142,7 +152,7 @@ export default function AdminAddPet() {
           >
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label>Pet Height</Form.Label>
-              <Form.Control as="select" custom>
+              <Form.Control as="select" custom defaultValue={petHeight}>
                 <option> </option>
                 <option>Under 20 sm</option>
                 <option>20sm to 50sm</option>
@@ -157,7 +167,7 @@ export default function AdminAddPet() {
           >
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label>Pet Weight</Form.Label>
-              <Form.Control as="select" custom>
+              <Form.Control as="select" custom defaultValue={petWeight}>
                 <option> </option>
                 <option>Under 5kg</option>
                 <option>5kg to 15kg</option>
@@ -173,7 +183,7 @@ export default function AdminAddPet() {
           >
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label>Pet bio</Form.Label>
-              <Form.Control as="select" custom>
+              <Form.Control as="select" custom defaultValue={petBio}>
                 <option> </option>
                 <option>good boy</option>
                 <option>bad boy</option>
@@ -188,7 +198,11 @@ export default function AdminAddPet() {
           >
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label> Is Hypoallergenic</Form.Label>
-              <Form.Control as="select" custom>
+              <Form.Control
+                as="select"
+                custom
+                defaultValue={petIsHypoallergenic}
+              >
                 <option> </option>
                 <option>yes</option>
                 <option>no</option>
@@ -202,7 +216,11 @@ export default function AdminAddPet() {
           >
             <Form.Group controlId="exampleForm.SelectCustom">
               <Form.Label> Is DietaryRestrictions</Form.Label>
-              <Form.Control as="select" custom>
+              <Form.Control
+                as="select"
+                custom
+                defaultValue={petIsDietaryRestrictions}
+              >
                 <option> </option>
                 <option>yes</option>
                 <option>no</option>
@@ -212,8 +230,8 @@ export default function AdminAddPet() {
         </div>
 
         <div>
-          <Button variant="primary" type="submit" onClick={onAddPet}>
-            Add New Pet
+          <Button variant="primary" type="submit" onClick={onEditPet}>
+            Edit Pet
           </Button>
         </div>
       </ReactModal>

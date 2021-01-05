@@ -1,27 +1,19 @@
 import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import mainContext from "../lip/context";
-import { getAllPets, getPetsByType } from "../lip/api";
-
-//====================
+import { getAllPets, searchPetsByParameters } from "../lip/api";
 
 export default function BasicSearchBar() {
   const contextData = useContext(mainContext);
   const [typeOfAnimal, setTypeOfAnimal] = useState("anyType");
-  const [petsArray, setPetsArray] = useState("");
-  //====================
 
   const onSubmit = async (event) => {
     event.preventDefault();
-    let result;
-    if (typeOfAnimal === "anyType") {
-      result = await getAllPets();
-    } else {
-      result = await getPetsByType(typeOfAnimal);
-    }
-    setPetsArray(petsArray);
-    console.log("result :>> ", result);
-    contextData.getPetsDataArray(result);
+    contextData.petsArray = [];
+    const petsArray = await searchPetsByParameters(typeOfAnimal);
+    contextData.petsArray = petsArray;
+
+    console.log("contextData :>> ", contextData);
   };
 
   const onAnimalTypeChange = async (event) => {
@@ -30,7 +22,7 @@ export default function BasicSearchBar() {
 
   return (
     <Form
-      // className="d-flex"
+      className="d-flex align-items-center justify-content-around"
       onSubmit={(event) => {
         onSubmit(event);
       }}

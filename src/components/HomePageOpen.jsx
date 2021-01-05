@@ -2,14 +2,18 @@ import React, { useState, useContext } from "react";
 import mainContext from "../lip/context";
 import NavBar from "./NavBar";
 import { Card } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 
 // ========
 
 export default function HomePageOpen() {
   const contextData = useContext(mainContext);
-  console.log("contextData :>> ", contextData);
-  // ========
+  const historyFunc = useHistory();
 
+  // ========
+  if (!contextData.isLogin) {
+    historyFunc.push("/");
+  }
   return (
     <>
       <Card className="home-page-card">

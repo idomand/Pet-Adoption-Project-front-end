@@ -9,8 +9,8 @@ import mainContext from "../lip/context";
 export default function HomePageClosed() {
   // ========
 
-  const myMockData = useContext(mainContext);
-  const [currentUser, setCurrentUser] = useState(myMockData);
+  const contextData = useContext(mainContext);
+  const [currentUser, setCurrentUser] = useState(contextData);
   const historyFunc = useHistory();
 
   // ========

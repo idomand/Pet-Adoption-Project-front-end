@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import mainContext from "../lip/context";
+import { searchPetsByParameters } from "../lip/api";
 //====================
 
 export default function AdvancedSearchBar() {
@@ -8,7 +9,7 @@ export default function AdvancedSearchBar() {
 
   const userData = useContext(mainContext);
   const [currentUser, setCurrentUser] = useState(userData);
-  const [searchTerm, setSearchTerm] = useState("");
+  const [petName, setPetName] = useState("");
   const [typeOfAnimal, setTypeOfAnimal] = useState("");
   const [adoptionStatus, setAdoptionStatus] = useState("");
   const [breed, setBreed] = useState("");
@@ -17,10 +18,16 @@ export default function AdvancedSearchBar() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    console.log("typeOfAnimal :>> ", typeOfAnimal);
-    console.log("adoptionStatus :>> ", adoptionStatus);
-    console.log("breed :>> ", breed);
-    console.log("petHeight,petWeight :>> ", petHeight, "---", petWeight);
+    const newSearchObject = {
+      petName,
+      typeOfAnimal,
+      adoptionStatus,
+      breed,
+      petHeight,
+      petWeight,
+    };
+    console.log("newSearchObject :>> ", newSearchObject);
+    searchPetsByParameters(newSearchObject);
   };
 
   return (
@@ -39,6 +46,7 @@ export default function AdvancedSearchBar() {
                   <option> </option>
                   <option>dog</option>
                   <option>cat</option>
+                  <option>other</option>
                 </Form.Control>
               </Form.Group>
             </Form>
@@ -103,16 +111,19 @@ export default function AdvancedSearchBar() {
           </div>
 
           <div>
-            <Form.Control
-              type="text"
-              placeholder="search"
-              value={searchTerm}
-              required
-              onChange={(event) => {
-                setSearchTerm(event.target.value);
-              }}
-            />
-            <Form.Text className="text-muted"></Form.Text>
+            <Form>
+              <Form.Label>Pet name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="search pet name"
+                value={petName}
+                required
+                onChange={(event) => {
+                  setPetName(event.target.value);
+                }}
+              />
+              <Form.Text className="text-muted"></Form.Text>
+            </Form>
           </div>
         </div>
         <Button

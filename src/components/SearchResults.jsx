@@ -1,17 +1,15 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import PetItemCard from "./PetItemCard";
 import mainContext from "../lip/context";
+import "./SearchResults.css";
 
 export default function SearchResults() {
   const contextData = useContext(mainContext);
-  const petsArrayData = contextData.petsDataArray;
-  console.log("======");
-  console.log(petsArrayData);
-  console.log("======");
+  const petsArrayData = contextData.petsArray;
 
   return (
-    <div>
-      <div className="pet-card-div">
+    <section>
+      <div className="search-result-div">
         {petsArrayData
           ? petsArrayData.map((element) => {
               return (
@@ -20,6 +18,6 @@ export default function SearchResults() {
             })
           : ""}
       </div>
-    </div>
+    </section>
   );
 }

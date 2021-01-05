@@ -13,8 +13,8 @@ import AdminPage from "./AdminPage";
 export default function MyRouter() {
   // const [isLogIn, setIsLogIn] = useState(false);
   const contextData = {
-    isAdmin: "",
-    // isLogIn: isLogIn,
+    isAdmin: false,
+    isLogIn: false,
     userEmail: "",
     userName: "",
     userPhoneNumber: "",
@@ -23,12 +23,16 @@ export default function MyRouter() {
       contextData.userName = userObject.name;
       contextData.userPhoneNumber = userObject.phoneNumber;
       contextData.isAdmin = userObject.isAdmin;
-
-      // setIsLogIn(true);
+      contextData.isLogin = userObject.isLogin;
     },
     logOutFunc: () => {
-      // setIsLogIn(false);
+      contextData.isLogin = false;
+      contextData.userEmail = "";
+      contextData.userName = "";
+      contextData.userPhoneNumber = "";
+      contextData.isAdmin = false;
     },
+    petsArray: [],
   };
   // ========
   return (

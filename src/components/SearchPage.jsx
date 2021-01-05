@@ -10,10 +10,10 @@ import SearchResults from "./SearchResults";
 
 export default function SearchPage() {
   //====================
-  console.log("this is searchPageRendering");
+
   const contextData = useContext(mainContext);
   const historyFunc = useHistory();
-  const [currentUser, setCurrentUser] = useState(contextData);
+  // const [currentUser, setCurrentUser] = useState(contextData);
   const [searchTerm, setSearchTerm] = useState("");
   const [searchOption, setSearchOption] = useState("");
   const [typeOfAnimal, setTypeOfAnimal] = useState("");
@@ -21,7 +21,7 @@ export default function SearchPage() {
   //====================
 
   const handleHomeButton = () => {
-    if (currentUser.flag) {
+    if (contextData.isLogin) {
       historyFunc.push("/HomePageOpen");
     } else {
       historyFunc.push("/");
@@ -33,28 +33,14 @@ export default function SearchPage() {
   return (
     <>
       <Card className="home-page-card">
-        <Card.Body className="d-flex flex-column justify-content-between p-5">
+        <Card.Body className="d-flex flex-column justify-content-between">
           <Card.Title>
-            {contextData.flag ? (
-              <h1>
-                welcome{" "}
-                <u>
-                  <strong>{contextData.userName}</strong>
-                </u>
-              </h1>
-            ) : (
-              <h1>
-                welcome{" "}
-                <u>
-                  <strong>stranger</strong>
-                </u>
-              </h1>
-            )}
+            <h1>Search Page</h1>
           </Card.Title>
           <SearchBar />
           <SearchResults />
           <div className="mt-3">
-            {currentUser.flag ? (
+            {contextData.isLogin ? (
               <NavBar currentPage="SearchPage" />
             ) : (
               <Button onClick={handleHomeButton}>HomePage</Button>

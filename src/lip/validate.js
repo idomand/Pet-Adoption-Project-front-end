@@ -1,5 +1,4 @@
-export const validateFields = (obj, passwordConfirmation) => {
-  // console.log(obj);
+export const validatePasswords = (obj, passwordConfirmation) => {
   if (obj.password !== passwordConfirmation) {
     return "passwords don't match";
   } else if (obj.password.length < 4) {

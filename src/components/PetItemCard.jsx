@@ -9,15 +9,15 @@ export default function PetItemCard(props) {
   const [isOpen, setIsOpen] = useState(false);
 
   const {
-    type,
+    typeOfAnimal,
     breed,
-    name,
-    height,
-    weight,
-    color,
-    bio,
-    hypoallergenic,
-    dietaryRestrictions,
+    petName,
+    petHeight,
+    petWeight,
+    petColor,
+    petBio,
+    petIsHypoallergenic,
+    petIsDietaryRestrictions,
     picture,
     adoptionStatus,
   } = props.animalDetails;
@@ -33,14 +33,13 @@ export default function PetItemCard(props) {
   const handleSavePet = () => {};
   const handleFoster = () => {};
   const handleAdopt = () => {
-    console.log(props.animalDetails);
   };
 
   return (
     <span className="pet-card-item">
-      <h4 className="pet-name">Name: {name}</h4>
+      <h4 className="pet-petName">Name: {petName}</h4>
       <p>Adoption Status: {adoptionStatus}</p>
-      <img className="pet-image-small" src={picture} alt={name} />
+      <img className="pet-image-small" src={picture} alt={petName} />
       <Button onClick={openModel}>info and actions</Button>
 
       <ReactModal ariaHideApp={false} isOpen={isOpen}>
@@ -52,15 +51,15 @@ export default function PetItemCard(props) {
               <div>
                 <p>
                   <strong>
-                    <u>pet name:</u>
+                    <u>pet Name:</u>
                   </strong>{" "}
-                  {name}
+                  {petName}
                 </p>
                 <p>
                   <strong>
                     <u>pet type:</u>
                   </strong>{" "}
-                  {`it is a beautiful ${breed} ${type}`}
+                  {`it is a beautiful ${breed} ${typeOfAnimal}`}
                 </p>
                 <p>
                   <strong>
@@ -72,7 +71,7 @@ export default function PetItemCard(props) {
                   <strong>
                     <u>description:</u>
                   </strong>{" "}
-                  {`its height is ${height}sm, and it weight ${weight} Kg and it is mostly ${color}`}
+                  {`its height is  ${petHeight}, and it weight is ${petWeight} and it is mostly ${petColor}`}
                 </p>
                 <p>
                   <strong>
@@ -82,22 +81,24 @@ export default function PetItemCard(props) {
                 </p>
                 <p>
                   <strong>
-                    <u> bio: </u>
+                    <u> pet Bio: </u>
                   </strong>{" "}
-                  {bio}
+                  {petBio}
                 </p>
                 <p>
                   <strong>
-                    <u>Special Restrictions: hypoallergenic?</u>
+                    <u>
+                      Special Restrictions: <br></br> hypoallergenic?
+                    </u>
                   </strong>{" "}
-                  {hypoallergenic},
+                  {petIsHypoallergenic},
                   <strong>
                     <u>dietaryRestrictions?</u>
                   </strong>{" "}
-                  {dietaryRestrictions}{" "}
+                  {petIsDietaryRestrictions}
                 </p>
               </div>
-              <img className="pet-image-big" src={picture} alt={name} />
+              <img className="pet-image-big" src={picture} alt={petName} />
             </div>
             <Button onClick={handleReturnToCenter}>
               return to adoption center

@@ -2,22 +2,35 @@ import React, { useState, useContext } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import ReactModal from "react-modal";
 import mainContext from "../lip/context";
-import { signUpNewUser } from "../lip/api";
-import { validateFields } from "../lip/validate";
+import { signUpNewUser, loginUser } from "../lip/api";
+import { validatePasswords } from "../lip/validate";
+import { useHistory } from "react-router-dom";
+
 // ========
 
 export default function SignUp() {
+  const historyFunc = useHistory();
+
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const myMockData = useContext(mainContext);
+  const contextData = useContext(mainContext);
   const [isOpen, setIsOpen] = useState(false);
   const [validationError, setValidationError] = useState("");
+  const [validationOK, setValidationOK] = useState("");
+
+  const [isSignUp, setIsSignUp] = useState(false);
   // ========
 
+  if (isSignUp) {
+    historyFunc.push("./HomePageOpen");
+  }
+
   const openModel = () => {
+    setValidationOK(``);
+
     setIsOpen(true);
   };
   const closeModel = () => {
@@ -25,45 +38,70 @@ export default function SignUp() {
   };
   const onSignUpSubmit = async (event) => {
     event.preventDefault();
+    setValidationOK(``);
     const newUser = {
       name,
       email,
       phoneNumber,
       password,
     };
-    let validationStatus = validateFields(newUser, passwordConfirmation);
-    setValidationError(validationStatus);
-    if (validationStatus) {
+    const isPasswordsInvalid = validatePasswords(newUser, passwordConfirmation);
+    setValidationError(isPasswordsInvalid);
+    if (isPasswordsInvalid) {
       return;
-    }
-    const userSignIN = await signUpNewUser(newUser);
-    console.log(userSignIN);
-    if (userSignIN === "Email already in use") {
-      setValidationError("Email already in use, pick new Email or Log in");
     } else {
-      setIsOpen(false);
-      setName("");
-      setEmail("");
-      setPassword("");
-      setPasswordConfirmation("");
-      setPhoneNumber("");
+      console.log("==========");
+      const userSignIn = await signUpNewUser(newUser);
+      console.log("userSignIn :>> ", userSignIn);
+      console.log("==========");
+
+      // const userLoginObject = { email, password };
+      // const loginResult = await loginUser(userLoginObject);
+      if (userSignIn === "Email already in use") {
+        setValidationError("Email already in use, pick new Email or Log in");
+      } else if (userSignIn === "ok") {
+        setValidationOK(`${name} had been sign in`);
+        // setIsOpen(false);
+        setName("");
+        setEmail("");
+        setPassword("");
+        setPasswordConfirmation("");
+        setPhoneNumber("");
+      }
+      // if (loginResult.commend === "password is correct") {
+      //   // historyFunc.push("./HomePageOpen");
+      //   setIsSignUp(true);
+      // }
     }
   };
   return (
     <>
       <Button onClick={openModel}>Sign Up</Button>
+
       <ReactModal ariaHideApp={false} isOpen={isOpen}>
-        <Button onClick={closeModel}> close</Button>
+        <div className="d-flex">
+          <Button onClick={closeModel}> close</Button>
+          {validationOK ? (
+            <Alert className="m-auto" variant={"success"}>
+              {validationOK}
+            </Alert>
+          ) : (
+            ""
+          )}
+
+          {validationError ? (
+            <Alert className="m-auto" variant={"danger"}>
+              {validationError}
+            </Alert>
+          ) : (
+            ""
+          )}
+        </div>
         <Card className="my-form">
           <Card.Title className="mx-auto">
             <strong>Sign Up</strong>
           </Card.Title>
           <Card.Body>
-            {validationError ? (
-              <Alert variant={"danger"}>{validationError}</Alert>
-            ) : (
-              ""
-            )}
             <Form
               onSubmit={(event) => {
                 onSignUpSubmit(event);

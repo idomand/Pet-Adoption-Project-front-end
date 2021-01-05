@@ -6,31 +6,14 @@ import { useHistory } from "react-router-dom";
 // ========
 
 export default function NavBar(props) {
-  const myMockData = useContext(mainContext);
+  const contextData = useContext(mainContext);
   const historyFunc = useHistory();
-  const [currentUser, setCurrentUser] = useState(myMockData);
-
+  console.log("i come from page:", props.currentPage);
   // ========
   const logOutFunc = () => {
-    currentUser.logOutFunc();
+    contextData.logOutFunc();
     historyFunc.push("/");
   };
-  // const handleMyPetsPageButton = () => {
-  //   historyFunc.push("/MyPetsPage");
-  // };
-  // const handleProfileSettingsButton = () => {
-  //   historyFunc.push("/ProfileSettings");
-  // };
-
-  // const handleSearchButton = () => {
-  //   historyFunc.push("/searchPage");
-  // };
-
-  // const handleAdminPageButton = () => {
-  //   historyFunc.push("/adminPage");
-  // };
-
-  // ========
 
   const nevBarButton = (target) => {
     historyFunc.push(target);
@@ -39,7 +22,7 @@ export default function NavBar(props) {
   return (
     <>
       <div className=" d-flex justify-content-between m-5">
-        {currentUser.isAdmin ? (
+        {contextData.isAdmin ? (
           <Button
             variant="success"
             onClick={() => {
@@ -57,6 +40,13 @@ export default function NavBar(props) {
           }}
         >
           User Settings
+        </Button>
+        <Button
+          onClick={() => {
+            nevBarButton("/homePageOpen");
+          }}
+        >
+          Home Page
         </Button>
         <Button
           onClick={() => {

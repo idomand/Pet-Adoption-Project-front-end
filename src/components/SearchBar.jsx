@@ -3,6 +3,7 @@ import { Dropdown } from "react-bootstrap";
 import mainContext from "../lip/context";
 import BasicSearchBar from "./BasicSearchBar";
 import AdvancedSearchBar from "./AdvancedSearchBar";
+import "./SearchBar.css";
 //====================
 
 export default function SearchBar() {
@@ -17,9 +18,9 @@ export default function SearchBar() {
   //====================
 
   return (
-    <div>
+    <div className="d-flex align-items-center justify-content-around">
       <Dropdown>
-        <Dropdown.Toggle variant="success" id="dropdown-basic" className="mb-4">
+        <Dropdown.Toggle variant="success" id="dropdown-basic">
           Search Options
         </Dropdown.Toggle>
         <Dropdown.Menu>

@@ -18,6 +18,9 @@ export default function Login() {
   // ========
 
   const openModel = () => {
+    setPassword("");
+    setErrorMessage("");
+    setEmail("");
     setIsOpen(true);
   };
   const closeModel = () => {
@@ -27,16 +30,11 @@ export default function Login() {
     let loginObject = { email, password };
     event.preventDefault();
     const userLogin = await loginUser(loginObject);
-    console.log("=====");
-    console.log("userLogin", userLogin);
-    console.log("=====");
-
     if (userLogin === "unknown Email") {
       setErrorMessage("unknown Email");
     } else if (userLogin === "incorrect password") {
       setErrorMessage("incorrect password");
     } else if (userLogin.commend === "password is correct") {
-      console.log("i am in");
       contextData.logInFunc(userLogin);
       setIsOpen(false);
       historyFunc.push("./HomePageOpen");
