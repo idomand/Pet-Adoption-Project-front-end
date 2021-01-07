@@ -11,7 +11,6 @@ import AdminPage from "./AdminPage";
 // ========
 
 export default function MyRouter() {
-  // const [isLogIn, setIsLogIn] = useState(false);
   const contextData = {
     isAdmin: false,
     isLogIn: false,

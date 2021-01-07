@@ -11,12 +11,6 @@ export default function SearchBar() {
   const [currentUser, setCurrentUser] = useState(contextData);
   const [searchOption, setSearchOption] = useState("BasicSearch");
 
-  //====================
-  // const onSearchSubmit = (event) => {
-  //   event.preventDefault();
-  // };
-  //====================
-
   return (
     <div className="d-flex align-items-center justify-content-around">
       <Dropdown>

@@ -50,28 +50,18 @@ export default function SignUp() {
     if (isPasswordsInvalid) {
       return;
     } else {
-      console.log("==========");
       const userSignIn = await signUpNewUser(newUser);
-      console.log("userSignIn :>> ", userSignIn);
-      console.log("==========");
 
-      // const userLoginObject = { email, password };
-      // const loginResult = await loginUser(userLoginObject);
       if (userSignIn === "Email already in use") {
         setValidationError("Email already in use, pick new Email or Log in");
       } else if (userSignIn === "ok") {
         setValidationOK(`${name} had been sign in`);
-        // setIsOpen(false);
         setName("");
         setEmail("");
         setPassword("");
         setPasswordConfirmation("");
         setPhoneNumber("");
       }
-      // if (loginResult.commend === "password is correct") {
-      //   // historyFunc.push("./HomePageOpen");
-      //   setIsSignUp(true);
-      // }
     }
   };
   return (

@@ -30,7 +30,7 @@ export default function HomePageOpen() {
               </p>
             </div>
           </Card.Title>
-          <NavBar />
+          <NavBar currentPage="HomePageOpen" />
         </Card.Body>
       </Card>
     </>

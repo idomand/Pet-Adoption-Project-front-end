@@ -26,7 +26,6 @@ export default function AdvancedSearchBar() {
       petHeight,
       petWeight,
     };
-    console.log("newSearchObject :>> ", newSearchObject);
     searchPetsByParameters(newSearchObject);
   };
 

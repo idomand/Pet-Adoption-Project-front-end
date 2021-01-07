@@ -1,16 +1,20 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import { Form, Button, Alert } from "react-bootstrap";
 import mainContext from "../lip/context";
-import { addNewPet } from "../lip/api";
+import {
+  addNewPet,
+  uploadImage,
+  getPetImages,
+  newFrontEndFunc,
+} from "../lip/api";
 import ReactModal from "react-modal";
-
+import "./AdminAddPet.css";
 // ================
 
 export default function AdminAddPet() {
   const contextData = useContext(mainContext);
   const [petName, setPetName] = useState("");
   const [typeOfAnimal, setTypeOfAnimal] = useState("");
-  // const [petPicture, setPetPicture] = useState(""); // remember: +++ add the function to upload a picture
   const [adoptionStatus, setAdoptionStatus] = useState("");
   const [breed, setBreed] = useState("");
   const [petHeight, setPetHeight] = useState("");
@@ -20,8 +24,20 @@ export default function AdminAddPet() {
   const [petIsHypoallergenic, setPetIsHypoallergenic] = useState("");
   const [petIsDietaryRestrictions, setPetIsDietaryRestrictions] = useState("");
   const [isOpen, setIsOpen] = useState(false);
+  // ================
+  // ================
+
+  const [petPicture, setPetPicture] = useState("");
+  const [fileInputState, setFileInputState] = useState("");
+  const [selectedFile, setSelectedFile] = useState("");
+  const [previewSource, setPreviewSource] = useState("");
 
   // ================
+  // ================
+
+  useEffect(() => {
+    newFrontEndFunc();
+  }, []);
 
   const openModel = () => {
     setIsOpen(true);
@@ -47,6 +63,29 @@ export default function AdminAddPet() {
     setIsOpen(false);
   };
 
+  const previewFile = (file) => {
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
+    reader.onload = () => {
+      setPreviewSource(reader.result);
+    };
+  };
+
+  const handleSubmitFile = async (event) => {
+    event.preventDefault();
+    if (!selectedFile) {
+      return;
+    }
+    const uploadStatus = await uploadImage(previewSource);
+  };
+
+  const handleFileChange = (event) => {
+    event.preventDefault();
+    const file = event.target.files[0];
+    previewFile(file);
+    setSelectedFile(file);
+  };
+
   return (
     <>
       <Button variant="success" onClick={openModel}>
@@ -57,6 +96,21 @@ export default function AdminAddPet() {
         <Button onClick={closeModel}>cancel</Button>
 
         <div className="d-flex">
+          <form onSubmit={handleSubmitFile}>
+            <input
+              className="image-input"
+              id="fileInput"
+              type="file"
+              name="image"
+              onChange={handleFileChange}
+              value={fileInputState}
+            />
+            <Button type="submit">Submit</Button>
+          </form>
+          {previewSource && (
+            <img src={previewSource} alt="pet" style={{ height: "100px" }} />
+          )}
+
           <Form>
             <Form.Group controlId="formName">
               <Form.Label>Pet Name</Form.Label>
