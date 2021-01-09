@@ -2,10 +2,10 @@ import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import mainContext from "../lip/context";
 import ReactModal from "react-modal";
-import { editPet } from "../lip/api";
+import { editUser } from "../lip/api";
 // ================
 
-export default function AdminEditPet(props) {
+export default function AdminEditPetItem(props) {
   const contextData = useContext(mainContext);
   const [petName, setPetName] = useState(props.animalDetails.petName);
   const [typeOfAnimal, setTypeOfAnimal] = useState(
@@ -37,6 +37,8 @@ export default function AdminEditPet(props) {
     setIsEditOpen(false);
   };
   const onEditPet = async (event) => {
+    ("FUNC -__ AdminEditPetItem __ -- onEditPet");
+
     event.preventDefault();
     const petObjectToEdit = {
       _id: props.animalDetails._id,
@@ -53,7 +55,7 @@ export default function AdminEditPet(props) {
         petIsDietaryRestrictions,
       },
     };
-    const petAfterUpdate = await editPet(petObjectToEdit);
+    const petAfterUpdate = await editUser(petObjectToEdit);
 
     setIsEditOpen(false);
   };

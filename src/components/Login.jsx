@@ -27,6 +27,7 @@ export default function Login() {
     setIsOpen(false);
   };
   const onLoginSubmit = async (event) => {
+
     let loginObject = { email, password };
     event.preventDefault();
     const userLogin = await loginUser(loginObject);

@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { Button } from "react-bootstrap";
 import mainContext from "../lip/context";
 import { useHistory } from "react-router-dom";
@@ -8,7 +8,6 @@ import { useHistory } from "react-router-dom";
 export default function NavBar(props) {
   const contextData = useContext(mainContext);
   const historyFunc = useHistory();
-  console.log("i come from page:", props.currentPage);
   // ========
   const logOutFunc = () => {
     contextData.logOutFunc();

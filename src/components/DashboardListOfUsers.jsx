@@ -2,22 +2,25 @@ import React, { useState, useContext } from "react";
 import { Button, Table } from "react-bootstrap";
 import mainContext from "../lip/context";
 import ReactModal from "react-modal";
-import { getAllPets } from "../lip/api";
-import AdminEditPetItem from "./AdminEditPetItem";
-// ================
+import { getAllUsers } from "../lip/api";
+import DashboardEditUser from "./DashboardEditUser";
+// ============
+// ============
 
-export default function AdminEditPet() {
+export default function DashboardListOfUsers() {
   const contextData = useContext(mainContext);
   const [isOpen, setIsOpen] = useState(false);
-  const [allPetsArray, setAllPetsArray] = useState([]);
+  const [allUsersArray, setAllUsersArray] = useState("");
+  // ============
+  // ============
 
-  const getPets = async () => {
-    const result = await getAllPets();
-    setAllPetsArray(result);
+  const showUsers = async () => {
+    const result = await getAllUsers();
+    await setAllUsersArray(result);
   };
   const openModel = () => {
     setIsOpen(true);
-    getPets();
+    showUsers();
   };
   const closeModel = () => {
     setIsOpen(false);
@@ -25,25 +28,25 @@ export default function AdminEditPet() {
   return (
     <>
       <Button variant="success" onClick={openModel}>
-        Edit Pet
+        show all users
       </Button>
       <ReactModal ariaHideApp={false} isOpen={isOpen}>
         <Button onClick={closeModel}>cancel</Button>
-
         <div className="pet-card-div">
           <Table id="students">
             <tbody>
-              {allPetsArray
-                ? allPetsArray.map((element) => {
-                    const { petName, typeOfAnimal, _id } = element;
+              {allUsersArray
+                ? allUsersArray.map((element) => {
+                    const { email, name, phoneNumber, _id } = element;
                     return (
                       <tr key={_id}>
-                        <td>{petName}</td>
-                        <td>{typeOfAnimal}</td>
+                        <td>{name}</td>
+                        <td>{phoneNumber}</td>
+                        <td>{email}</td>
                         <td>{_id}</td>
                         <td>
                           {" "}
-                          <AdminEditPetItem animalDetails={element} />
+                          <DashboardEditUser userDetails={element} />
                         </td>
                       </tr>
                     );

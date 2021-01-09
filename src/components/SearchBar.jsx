@@ -3,12 +3,9 @@ import { Dropdown } from "react-bootstrap";
 import mainContext from "../lip/context";
 import BasicSearchBar from "./BasicSearchBar";
 import AdvancedSearchBar from "./AdvancedSearchBar";
-import "./SearchBar.css";
-//====================
 
-export default function SearchBar() {
+export default function SearchBar(props) {
   const contextData = useContext(mainContext);
-  const [currentUser, setCurrentUser] = useState(contextData);
   const [searchOption, setSearchOption] = useState("BasicSearch");
 
   return (
@@ -36,7 +33,7 @@ export default function SearchBar() {
       </Dropdown>
 
       {searchOption === "BasicSearch" ? (
-        <BasicSearchBar />
+        <BasicSearchBar callbackFunction={props.callbackFunction} />
       ) : (
         <AdvancedSearchBar />
       )}

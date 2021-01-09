@@ -1,18 +1,20 @@
 import React, { useState, useContext } from "react";
 import { Form, Button } from "react-bootstrap";
 import mainContext from "../lip/context";
-import { getAllPets, searchPetsByParameters } from "../lip/api";
+import { searchPetsByParameters } from "../lip/api";
 
-export default function BasicSearchBar() {
+export default function BasicSearchBar(props) {
   const contextData = useContext(mainContext);
   const [typeOfAnimal, setTypeOfAnimal] = useState("anyType");
+  const [petsArrayFromDB, setPetsArrayFromDB] = useState("");
 
   const onSubmit = async (event) => {
     event.preventDefault();
     contextData.petsArray = [];
     const petsArray = await searchPetsByParameters(typeOfAnimal);
     contextData.petsArray = petsArray;
-
+    await setPetsArrayFromDB(petsArray);
+    props.callbackFunction(petsArray);
   };
 
   const onAnimalTypeChange = async (event) => {
@@ -45,4 +47,3 @@ export default function BasicSearchBar() {
     </Form>
   );
 }
-

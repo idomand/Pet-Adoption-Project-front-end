@@ -17,6 +17,7 @@ export default function AdvancedSearchBar() {
   const [petWeight, setPetWeight] = useState("");
 
   const onSubmit = (event) => {
+
     event.preventDefault();
     const newSearchObject = {
       petName,

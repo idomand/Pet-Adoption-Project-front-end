@@ -37,6 +37,7 @@ export default function SignUp() {
     setIsOpen(false);
   };
   const onSignUpSubmit = async (event) => {
+
     event.preventDefault();
     setValidationOK(``);
     const newUser = {

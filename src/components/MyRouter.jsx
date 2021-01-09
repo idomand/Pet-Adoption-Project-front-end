@@ -7,7 +7,7 @@ import MyPetsPage from "./MyPetsPage";
 import HomePageClosed from "./HomePageClosed";
 import HomePageOpen from "./HomePageOpen";
 import AdminPage from "./AdminPage";
-
+import Dashboard from "./Dashboard";
 // ========
 
 export default function MyRouter() {
@@ -18,6 +18,7 @@ export default function MyRouter() {
     userName: "",
     userPhoneNumber: "",
     logInFunc: (userObject) => {
+
       contextData.userEmail = userObject.email;
       contextData.userName = userObject.name;
       contextData.userPhoneNumber = userObject.phoneNumber;
@@ -25,6 +26,7 @@ export default function MyRouter() {
       contextData.isLogin = userObject.isLogin;
     },
     logOutFunc: () => {
+
       contextData.isLogin = false;
       contextData.userEmail = "";
       contextData.userName = "";
@@ -41,6 +43,9 @@ export default function MyRouter() {
           <Switch>
             <Route path="/SearchPage">
               <SearchPage />
+            </Route>
+            <Route path="/Dashboard">
+              <Dashboard />
             </Route>
             <Route path="/AdminPage">
               <AdminPage />

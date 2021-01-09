@@ -16,6 +16,7 @@ export default function HomePageClosed() {
   // ========
 
   const handleSearchButton = () => {
+
     historyFunc.push("/searchPage");
   };
 

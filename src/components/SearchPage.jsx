@@ -13,12 +13,14 @@ export default function SearchPage() {
 
   const contextData = useContext(mainContext);
   const historyFunc = useHistory();
-  // const [currentUser, setCurrentUser] = useState(contextData);
-  const [searchTerm, setSearchTerm] = useState("");
-  const [searchOption, setSearchOption] = useState("");
-  const [typeOfAnimal, setTypeOfAnimal] = useState("");
 
   //====================
+
+  const [petArrayResult, setPetArrayResult] = useState([]);
+
+  const callbackFunction = (childData) => {
+    setPetArrayResult(childData);
+  };
 
   const handleHomeButton = () => {
     if (contextData.isLogin) {
@@ -37,8 +39,8 @@ export default function SearchPage() {
           <Card.Title>
             <h1>Search Page</h1>
           </Card.Title>
-          <SearchBar />
-          <SearchResults />
+          <SearchBar callbackFunction={callbackFunction} />
+          <SearchResults results={petArrayResult} />
           <div className="mt-3">
             {contextData.isLogin ? (
               <NavBar currentPage="SearchPage" />

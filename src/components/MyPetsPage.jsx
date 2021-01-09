@@ -1,21 +1,10 @@
-import React, { useState, useContext } from "react";
+import React from "react";
 import { Card } from "react-bootstrap";
-import mainContext from "../lip/context";
-import { useHistory } from "react-router-dom";
 import NavBar from "./NavBar";
 import PetItemCard from "./PetItemCard";
 import "./MyPetsPage.css";
 
-// ========
-
 export default function MyPetsPage() {
-  // ========
-
-  const historyFunc = useHistory();
-  const myMockData = useContext(mainContext);
-  const [currentUser, setCurrentUser] = useState(myMockData);
-  //====================
-
   return (
     <>
       <Card className="home-page-card">
