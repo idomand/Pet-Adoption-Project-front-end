@@ -1,8 +1,8 @@
-import React, { useState, useContext } from "react";
+import React, { useState /* , useContext */ } from "react";
 import { Form, Button, Card, Alert } from "react-bootstrap";
 import ReactModal from "react-modal";
-import mainContext from "../lip/context";
-import { signUpNewUser, loginUser } from "../lip/api";
+// import mainContext from "../lip/context";
+import { signUpNewUser /* , loginUser */ } from "../lip/api";
 import { validatePasswords } from "../lip/validate";
 import { useHistory } from "react-router-dom";
 
@@ -16,12 +16,12 @@ export default function SignUp() {
   const [password, setPassword] = useState("");
   const [passwordConfirmation, setPasswordConfirmation] = useState("");
   const [phoneNumber, setPhoneNumber] = useState("");
-  const contextData = useContext(mainContext);
+  // const contextData = useContext(mainContext);
   const [isOpen, setIsOpen] = useState(false);
   const [validationError, setValidationError] = useState("");
   const [validationOK, setValidationOK] = useState("");
 
-  const [isSignUp, setIsSignUp] = useState(false);
+  const [isSignUp /* , setIsSignUp */] = useState(false);
   // ========
 
   if (isSignUp) {
@@ -37,7 +37,6 @@ export default function SignUp() {
     setIsOpen(false);
   };
   const onSignUpSubmit = async (event) => {
-
     event.preventDefault();
     setValidationOK(``);
     const newUser = {

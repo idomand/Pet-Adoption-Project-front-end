@@ -1,11 +1,11 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Dropdown } from "react-bootstrap";
-import mainContext from "../lip/context";
+// import mainContext from "../lip/context";
 import BasicSearchBar from "./BasicSearchBar";
 import AdvancedSearchBar from "./AdvancedSearchBar";
 
 export default function SearchBar(props) {
-  const contextData = useContext(mainContext);
+  // const contextData = useContext(mainContext);
   const [searchOption, setSearchOption] = useState("BasicSearch");
 
   return (

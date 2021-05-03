@@ -1,12 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState /* , useContext */ } from "react";
 import { Form, Button } from "react-bootstrap";
-import mainContext from "../lip/context";
+// import mainContext from "../lip/context";
 import ReactModal from "react-modal";
 import { editUser } from "../lip/api";
 // ================
 
 export default function AdminEditPetItem(props) {
-  const contextData = useContext(mainContext);
+  // const contextData = useContext(mainContext);
   const [petName, setPetName] = useState(props.animalDetails.petName);
   const [typeOfAnimal, setTypeOfAnimal] = useState(
     props.animalDetails.typeOfAnimal
@@ -56,7 +56,7 @@ export default function AdminEditPetItem(props) {
       },
     };
     const petAfterUpdate = await editUser(petObjectToEdit);
-
+    console.log("petAfterUpdate :>> ", petAfterUpdate);
     setIsEditOpen(false);
   };
 

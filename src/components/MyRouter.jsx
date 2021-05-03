@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { MainProvider } from "../lip/context";
 import SearchPage from "./SearchPage";
@@ -18,7 +18,6 @@ export default function MyRouter() {
     userName: "",
     userPhoneNumber: "",
     logInFunc: (userObject) => {
-
       contextData.userEmail = userObject.email;
       contextData.userName = userObject.name;
       contextData.userPhoneNumber = userObject.phoneNumber;
@@ -26,7 +25,6 @@ export default function MyRouter() {
       contextData.isLogin = userObject.isLogin;
     },
     logOutFunc: () => {
-
       contextData.isLogin = false;
       contextData.userEmail = "";
       contextData.userName = "";

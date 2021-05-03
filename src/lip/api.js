@@ -23,9 +23,8 @@ export const searchPetsByParameters = async (parameters) => {
 };
 
 export const uploadImage = async (base64EncodedImage) => {
-
   try {
-    const foo = await fetch(`${baseUrl}/pets/petImages`, {
+    /* const foo  =*/ await fetch(`${baseUrl}/pets/petImages`, {
       method: "POST",
       body: JSON.stringify({ data: base64EncodedImage }),
       headers: { "Content-Type": "application/json" },
@@ -49,7 +48,6 @@ export const getPetImages = async () => {
 };
 
 export const newFrontEndFunc = async () => {
-
   try {
     const foo = await axios.get(`${baseUrl}/pets/newFunc`);
     return foo;
@@ -69,7 +67,6 @@ export const editPet = async (petObject) => {
   }
 };
 export const addNewPet = async (obj) => {
-
   let result;
   await axios
     .post(`${baseUrl}/pets`, obj)
@@ -84,7 +81,6 @@ export const addNewPet = async (obj) => {
 };
 
 export const getAllPets = async () => {
-
   try {
     const response = await axios.get(`${baseUrl}/pets`);
     let petsArray = response.data;
@@ -93,7 +89,6 @@ export const getAllPets = async () => {
     console.error(error);
   }
 };
-
 
 export const editUser = async (petObject) => {
   try {
@@ -109,7 +104,6 @@ export const editUser = async (petObject) => {
 };
 
 export const loginUser = async (loginObject) => {
-
   let result;
   await axios
     .post(`${baseUrl}/users/login`, loginObject)
@@ -123,7 +117,6 @@ export const loginUser = async (loginObject) => {
 };
 
 export const signUpNewUser = async (obj) => {
-
   let result;
   await axios
     .post(`${baseUrl}/users`, obj)

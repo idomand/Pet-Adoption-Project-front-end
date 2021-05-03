@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext /* , useEffect, useState  */ } from "react";
 import PetItemCard from "./PetItemCard";
 import mainContext from "../lip/context";
 import "./SearchResults.css";
@@ -6,9 +6,9 @@ import "./SearchResults.css";
 export default function SearchResults(props) {
   const contextData = useContext(mainContext);
   const petsArrayData = contextData.petsArray;
-  const [petsArrayFromDB, setPetsArrayFromDB] = useState("");
+  // const [petsArrayFromDB, setPetsArrayFromDB] = useState("");
 
-  let foo = props.results;
+  // let foo = props.results;
 
   return (
     <section>

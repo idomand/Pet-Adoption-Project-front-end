@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { Form, Button } from "react-bootstrap";
-import mainContext from "../lip/context";
-import { addNewPet, uploadImage, getPetImages } from "../lip/api";
+// import mainContext from "../lip/context";
+import { addNewPet, uploadImage } from "../lip/api";
 import ReactModal from "react-modal";
 import "./AdminAddPet.css";
 // ================
@@ -19,7 +19,7 @@ export default function AdminAddPet() {
   const [petIsDietaryRestrictions, setPetIsDietaryRestrictions] = useState("");
   const [isOpen, setIsOpen] = useState(false);
 
-  const [fileInputState, setFileInputState] = useState("");
+  const [fileInputState /*,  setFileInputState */] = useState("");
   const [selectedFile, setSelectedFile] = useState("");
   const [previewSource, setPreviewSource] = useState("");
 
@@ -45,11 +45,11 @@ export default function AdminAddPet() {
       petIsDietaryRestrictions,
     };
     const result = await addNewPet(newPet);
+    console.log(result);
     setIsOpen(false);
   };
 
   const previewFile = (file) => {
-
     const reader = new FileReader();
     reader.readAsDataURL(file);
     reader.onload = () => {
@@ -58,16 +58,15 @@ export default function AdminAddPet() {
   };
 
   const handleSubmitFile = async (event) => {
-
     event.preventDefault();
     if (!selectedFile) {
       return;
     }
     const uploadStatus = await uploadImage(previewSource);
+    console.log(uploadStatus);
   };
 
   const handleFileChange = (event) => {
-
     event.preventDefault();
     const file = event.target.files[0];
     previewFile(file);

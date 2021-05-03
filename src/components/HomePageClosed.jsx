@@ -1,22 +1,21 @@
-import React, { useState, useContext } from "react";
+import React /* , { useState, useContext } */ from "react";
 import Login from "./Login";
 import SignUp from "./SignUp";
 import { useHistory } from "react-router-dom";
 import { Button, Card } from "react-bootstrap";
-import mainContext from "../lip/context";
+// import mainContext from "../lip/context";
 // ========
 
 export default function HomePageClosed() {
   // ========
 
-  const contextData = useContext(mainContext);
-  const [currentUser, setCurrentUser] = useState(contextData);
+  // const contextData = useContext(mainContext);
+  // const [currentUser, setCurrentUser] = useState(contextData);
   const historyFunc = useHistory();
 
   // ========
 
   const handleSearchButton = () => {
-
     historyFunc.push("/searchPage");
   };
 

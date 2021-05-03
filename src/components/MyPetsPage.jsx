@@ -1,7 +1,7 @@
 import React from "react";
 import { Card } from "react-bootstrap";
 import NavBar from "./NavBar";
-import PetItemCard from "./PetItemCard";
+// import PetItemCard from "./PetItemCard";
 import "./MyPetsPage.css";
 
 export default function MyPetsPage() {

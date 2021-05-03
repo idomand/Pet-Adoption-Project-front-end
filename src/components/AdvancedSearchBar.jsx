@@ -1,14 +1,14 @@
-import React, { useState, useContext } from "react";
+import React, { useState /* , useContext  */ } from "react";
 import { Form, Button } from "react-bootstrap";
-import mainContext from "../lip/context";
+// import mainContext from "../lip/context";
 import { searchPetsByParameters } from "../lip/api";
 //====================
 
 export default function AdvancedSearchBar() {
   //====================
 
-  const userData = useContext(mainContext);
-  const [currentUser, setCurrentUser] = useState(userData);
+  // const userData = useContext(mainContext);
+  // const [currentUser, setCurrentUser] = useState(userData);
   const [petName, setPetName] = useState("");
   const [typeOfAnimal, setTypeOfAnimal] = useState("");
   const [adoptionStatus, setAdoptionStatus] = useState("");
@@ -17,7 +17,6 @@ export default function AdvancedSearchBar() {
   const [petWeight, setPetWeight] = useState("");
 
   const onSubmit = (event) => {
-
     event.preventDefault();
     const newSearchObject = {
       petName,

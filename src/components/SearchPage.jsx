@@ -1,5 +1,5 @@
-import React, { useState, useContext, useEffect } from "react";
-import { Form, Button, Card, Dropdown } from "react-bootstrap";
+import React, { useState, useContext } from "react";
+import { Button, Card } from "react-bootstrap";
 import mainContext from "../lip/context";
 import { useHistory } from "react-router-dom";
 import NavBar from "./NavBar";

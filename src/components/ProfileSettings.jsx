@@ -1,12 +1,12 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Form, Button, Card } from "react-bootstrap";
-import mainContext from "../lip/context";
+// import mainContext from "../lip/context";
 import NavBar from "./NavBar";
 // ========
 
 export default function ProfileSettings() {
-  const myMockData = useContext(mainContext);
-  const [currentUser, setCurrentUser] = useState(myMockData);
+  // const myMockData = useContext(mainContext);
+  // const [currentUser, setCurrentUser] = useState(myMockData);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

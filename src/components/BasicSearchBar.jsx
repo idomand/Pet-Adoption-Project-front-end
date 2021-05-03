@@ -6,7 +6,7 @@ import { searchPetsByParameters } from "../lip/api";
 export default function BasicSearchBar(props) {
   const contextData = useContext(mainContext);
   const [typeOfAnimal, setTypeOfAnimal] = useState("anyType");
-  const [petsArrayFromDB, setPetsArrayFromDB] = useState("");
+  const [, /* petsArrayFromDB */ setPetsArrayFromDB] = useState("");
 
   const onSubmit = async (event) => {
     event.preventDefault();

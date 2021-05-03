@@ -1,15 +1,15 @@
-import React, { useState, useContext } from "react";
+import React, { useState /* , useContext  */ } from "react";
 import { Form, Button } from "react-bootstrap";
-import mainContext from "../lip/context";
+// import mainContext from "../lip/context";
 import ReactModal from "react-modal";
 import { editUser } from "../lip/api";
 // ================
 
 export default function DashboardEditUser(props) {
-  const contextData = useContext(mainContext);
+  // const contextData = useContext(mainContext);
   const [name, setUserName] = useState(props.userDetails.name);
   const [phoneNumber, setPhoneNumber] = useState(props.userDetails.phoneNumber);
-  const [email, setEmail] = useState(props.userDetails.email);
+  const [email /* , setEmail */] = useState(props.userDetails.email);
   const [isEditOpen, setIsEditOpen] = useState(false);
 
   // ================
@@ -31,6 +31,7 @@ export default function DashboardEditUser(props) {
       },
     };
     const userAfterUpdate = await editUser(userObjectToEdit);
+    console.log("userAfterUpdate :>> ", userAfterUpdate);
     setIsEditOpen(false);
   };
 

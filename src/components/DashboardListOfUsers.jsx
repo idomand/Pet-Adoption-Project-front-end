@@ -1,6 +1,6 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import { Button, Table } from "react-bootstrap";
-import mainContext from "../lip/context";
+// import mainContext from "../lip/context";
 import ReactModal from "react-modal";
 import { getAllUsers } from "../lip/api";
 import DashboardEditUser from "./DashboardEditUser";
@@ -8,7 +8,7 @@ import DashboardEditUser from "./DashboardEditUser";
 // ============
 
 export default function DashboardListOfUsers() {
-  const contextData = useContext(mainContext);
+  // const contextData = useContext(mainContext);
   const [isOpen, setIsOpen] = useState(false);
   const [allUsersArray, setAllUsersArray] = useState("");
   // ============

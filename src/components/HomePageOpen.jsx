@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import mainContext from "../lip/context";
 import NavBar from "./NavBar";
 import { Card } from "react-bootstrap";
